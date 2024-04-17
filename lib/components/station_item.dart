@@ -19,9 +19,9 @@ class StationItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(8),
+      padding: EdgeInsets.all(7),
       margin: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-      height: 120,  // Sabit yükseklik
+      height: 110,  // Sabit yükseklik
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(10),

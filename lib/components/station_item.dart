@@ -1,94 +1,77 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';  // intl paketi için import
 
 class StationItem extends StatelessWidget {
-  final String imagePath;  // Resim dosyasının yolu
-  final String title;      // Durak adı
-  final String details;    // Durak detayları
+  final String imagePath;  // Arka plan resmi
   final String country;    // Ülke adı
+  final String date;       // Tarih
   final VoidCallback onRemove;  // Çıkarma işlemi için callback
 
   const StationItem({
     Key? key,
     required this.imagePath,
-    required this.title,
-    required this.details,
     required this.country,
+    required this.date,
     required this.onRemove,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final formattedDate = DateFormat('dd.MM.yyyy').format(DateTime.parse(date));  // Tarihi formatla
+
     return Container(
-      padding: EdgeInsets.all(7),
-      margin: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-      height: 110,  // Sabit yükseklik
+      height: 150,  // Yüksekliği artırıldı
+      margin: EdgeInsets.symmetric(vertical: 0, horizontal: 3),  // Kenarlardan az boşluk
       decoration: BoxDecoration(
-        color: Colors.white,
         borderRadius: BorderRadius.circular(10),
+        border: Border.all(color: Colors.white, width: 1), // İnce beyaz çerçeve eklendi
+        image: DecorationImage(
+          image: NetworkImage(imagePath),
+          fit: BoxFit.cover,
+          colorFilter: ColorFilter.mode(
+            Colors.black.withOpacity(0.5), BlendMode.darken),  // Hafif karartma
+        ),
         boxShadow: [
           BoxShadow(
             color: Colors.grey.withOpacity(0.5),
-            spreadRadius: 1,
-            blurRadius: 6,
+            spreadRadius: 0,
+            blurRadius: 5,
             offset: Offset(0, 3),
           ),
         ],
       ),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      child: Stack(
         children: [
-          Container(
-            width: 100,
-            height: 100,
-            margin: EdgeInsets.only(right: 10),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              image: DecorationImage(
-                fit: BoxFit.cover,
-                image: NetworkImage(imagePath),
-              ),
-            ),
-          ),
-          Expanded(
+          Padding(
+            padding: EdgeInsets.only(left: 10, top: 10, right: 10),  // İç padding
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
-                  title,
+                  formattedDate,
                   style: TextStyle(
-                    fontSize: 15,
+                    fontSize: 11,
                     fontWeight: FontWeight.bold,
-                    color: Colors.black,
+                    color: Colors.red,
                   ),
                 ),
-                SizedBox(height: 3),
-                Flexible(
-                  child: Text(
-                    details,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                      fontSize: 13,
-                      color: Colors.grey[600],
-                    ),
+                Text(
+                  country,
+                  style: TextStyle(
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                    letterSpacing: -2,
                   ),
-                ),
-                Spacer(),
-                Row(
-                  
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      country,
-                      style: TextStyle(
-                        fontSize: 13,
-                        color: Colors.grey[600],
-                      ),
-                    ),
-                    CustomDeleteButton(onRemove: onRemove),
-                  ],
                 ),
               ],
             ),
+          ),
+          Positioned(
+            top: 5,
+            right: 5,
+            child: CustomDeleteButton(onRemove: onRemove),
           ),
         ],
       ),
@@ -106,8 +89,8 @@ class CustomDeleteButton extends StatelessWidget {
     return InkWell(
       onTap: onRemove,
       borderRadius: BorderRadius.circular(24),
-      child: Container(
-        padding: EdgeInsets.all(8),
+      child: Padding(
+        padding: EdgeInsets.all(5),
         child: Icon(Icons.delete, color: Colors.red),
       ),
     );

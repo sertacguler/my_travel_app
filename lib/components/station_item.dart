@@ -55,6 +55,7 @@ class StationItem extends StatelessWidget {
                     fontSize: 11,
                     fontWeight: FontWeight.bold,
                     color: Colors.red,
+                    fontFamily: 'Oswald'
                   ),
                 ),
                 Text(
@@ -64,6 +65,7 @@ class StationItem extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
                     letterSpacing: -2,
+                    fontFamily: 'Oswald'
                   ),
                 ),
               ],

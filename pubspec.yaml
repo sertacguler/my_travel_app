@@ -69,7 +69,25 @@ flutter:
     - assets/daga.png
     - assets/dage.png
   #   - images/a_dot_ham.jpeg
+  fonts:
+    - family: Oswald
+      fonts:
+        - asset: assets/fonts/Oswald-Regular.ttf
+        - asset: assets/fonts/Oswald-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Oswald-Bold.ttf
+          weight: 700
 
+    - family: DancingScript
+      fonts:
+        - asset: assets/fonts/DancingScript-Regular.ttf
+        - asset: assets/fonts/DancingScript-Bold.ttf
+          weight: 700
+
+    - family: NothingYouCouldDo
+      fonts:
+        - asset: assets/fonts/NothingYouCouldDo-Regular.ttf
+          weight: 500
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 

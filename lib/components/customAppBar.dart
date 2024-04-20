@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'theme.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
@@ -10,7 +11,9 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: Text(title),
+      title: Text(title,
+            style: TextStyle(letterSpacing: 2, color: AppColors.navyBlue,
+                fontStyle: FontStyle.italic, fontSize: 24, fontWeight: FontWeight.bold, fontFamily: 'DancingScript')),
       leading: IconButton(
         icon: Icon(Icons.arrow_back),
         onPressed: () => Navigator.of(context).pop(),

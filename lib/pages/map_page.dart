@@ -113,7 +113,7 @@ class _MapPageState extends State<MapPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(title: 'TravelQuest'),
+      appBar: CustomAppBar(title: 'Travelquest'),
       body: Stack(
         children: [
           FlutterMap(
@@ -156,11 +156,10 @@ class _MapPageState extends State<MapPage> {
                           itemCount: markersInfo.length + 1,
                           itemBuilder: (BuildContext context, int index) {
                             if (index == 0) {
-                              // Başlık elemanı
-                              return _buildHeader();
+                              var data = markersInfo[0];
+                              return _buildHeader(data);
                             } else {
-                              var data = markersInfo[index -
-                                  1]; // index - 1 çünkü başlık için bir kaydırma yapıyoruz.
+                              var data = markersInfo[index - 1];
                               final formattedDate = DateFormat('dd/MM/yyyy')
                                   .format(DateTime.parse(data.date));
                               return _buildListItem(data, formattedDate);
@@ -274,7 +273,7 @@ class _MapPageState extends State<MapPage> {
   }*/
 }
 
-Widget _buildHeader() {
+Widget _buildHeader(StationData data) {
   return Column(
     children: [
       SizedBox(height: 8),
@@ -288,10 +287,11 @@ Widget _buildHeader() {
       ),
       SizedBox(height: 8),
       Text(
-        "Stations Info",
+        data.country + ' Quest',
         style: TextStyle(
           fontWeight: FontWeight.bold,
           fontSize: 24,
+            fontFamily: 'Oswald'
         ),
       ),
       SizedBox(height: 8),
@@ -305,12 +305,15 @@ Widget _buildListItem(StationData data, String formattedDate) {
   Icon arrowIcon;
   Text countryText = Text(data.country,
       style: TextStyle(
-          color: Colors.grey[600], fontSize: 12, fontWeight: FontWeight.bold));
+          color: Colors.grey[600], fontSize: 12, fontWeight: FontWeight.bold,
+                fontFamily: 'Oswald'));
   Text dateText = Text(formattedDate,
       style: TextStyle(
-          color: Colors.grey, fontSize: 12, fontWeight: FontWeight.bold));
+          color: Colors.grey, fontSize: 12, fontWeight: FontWeight.bold,
+                fontFamily: 'Oswald'));
   Text dataTitle = Text(data.title,
-      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold));
+      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold,
+                fontFamily: 'Oswald'));
   switch (data.status) {
     case 1:
       listIcon = Icon(Icons.location_on, color: AppColors.green, size: 30.0);
@@ -319,19 +322,22 @@ Widget _buildListItem(StationData data, String formattedDate) {
               color: AppColors.green,
               fontSize: 13,
               letterSpacing: -0.5,
-              fontWeight: FontWeight.bold));
+              fontWeight: FontWeight.bold,
+                fontFamily: 'Oswald'));
       countryText = Text(data.country,
           style: TextStyle(
               color: AppColors.green,
               fontSize: 14,
               letterSpacing: -0.5,
-              fontWeight: FontWeight.bold));
+              fontWeight: FontWeight.bold,
+                fontFamily: 'Oswald'));
       arrowIcon = Icon(Icons.arrow_forward, size: 20, color: AppColors.green);
       dataTitle = Text(data.title,
           style: TextStyle(
               color: AppColors.navyBlue,
               fontSize: 18,
-              fontWeight: FontWeight.bold));
+              fontWeight: FontWeight.bold,
+                fontFamily: 'Oswald'));
       dynamicColor = AppColors.white;
       break;
     case 2:
@@ -340,20 +346,23 @@ Widget _buildListItem(StationData data, String formattedDate) {
           style: TextStyle(
               color: Colors.grey[600],
               fontSize: 12,
-              fontWeight: FontWeight.bold));
+              fontWeight: FontWeight.bold,
+                fontFamily: 'Oswald'));
       countryText = Text(data.country,
           style: TextStyle(
               color: Colors.grey[600],
               fontSize: 14,
               letterSpacing: -0.5,
-              fontWeight: FontWeight.bold));
+              fontWeight: FontWeight.bold,
+                fontFamily: 'Oswald'));
       arrowIcon =
           Icon(Icons.arrow_forward_ios, size: 16, color: AppColors.navyBlue);
       dataTitle = Text(data.title,
           style: TextStyle(
               color: AppColors.navyBlue,
               fontSize: 18,
-              fontWeight: FontWeight.bold));
+              fontWeight: FontWeight.bold,
+                fontFamily: 'Oswald'));
       dynamicColor = AppColors.lightLightGrey;
       break;
     case 3:
@@ -364,13 +373,15 @@ Widget _buildListItem(StationData data, String formattedDate) {
               color: Colors.grey,
               fontSize: 14,
               letterSpacing: -0.5,
-              fontWeight: FontWeight.bold));
+              fontWeight: FontWeight.bold,
+                fontFamily: 'Oswald'));
       arrowIcon = Icon(Icons.arrow_forward_ios, size: 16, color: Colors.grey);
       dataTitle = Text(data.title,
           style: TextStyle(
               color: Colors.grey[600],
               fontSize: 18,
-              fontWeight: FontWeight.bold));
+              fontWeight: FontWeight.bold,
+                fontFamily: 'Oswald'));
       dynamicColor = AppColors.lightLightGrey;
       break;
     default:
@@ -383,10 +394,12 @@ Widget _buildListItem(StationData data, String formattedDate) {
               color: Colors.grey,
               fontSize: 14,
               letterSpacing: -0.5,
-              fontWeight: FontWeight.bold));
+              fontWeight: FontWeight.bold,
+                fontFamily: 'Oswald'));
       arrowIcon = Icon(Icons.arrow_forward_ios, size: 16, color: Colors.grey);
       dataTitle = Text(data.title,
-          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold));
+          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold,
+                fontFamily: 'Oswald'));
       dynamicColor = AppColors.lightLightGrey;
   }
 

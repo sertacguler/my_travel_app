@@ -58,7 +58,9 @@ class _StationListPageState extends State<StationListPage> {
           },
         ),
         title:
-            Text("Durak Listesi", style: TextStyle(color: AppColors.navyBlue)),
+            Text("Travelquest",
+            style: TextStyle(letterSpacing: 2, color: AppColors.navyBlue,
+                fontStyle: FontStyle.italic, fontSize: 24, fontWeight: FontWeight.bold, fontFamily: 'DancingScript')),
         backgroundColor: AppColors.white,
       ),
       body: ListView.separated(
@@ -74,9 +76,11 @@ class _StationListPageState extends State<StationListPage> {
                 radius: 30,
               ),
               title: Text(station.title,
-                  style: TextStyle(color: AppColors.navyBlue)),
+                  style: TextStyle(color: AppColors.navyBlue,
+                fontFamily: 'Oswald')),
               subtitle: Text(station.details,
-                  style: TextStyle(color: AppColors.navyBlue)),
+                  style: TextStyle(color: AppColors.navyBlue,
+                fontFamily: 'Oswald')),
               trailing: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[

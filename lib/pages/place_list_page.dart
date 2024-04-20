@@ -49,9 +49,14 @@ class _PlaceListPageState extends State<PlaceListPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Yerler Listesi",
+        title: Text("Travelquest",
             style: TextStyle(
-                fontStyle: FontStyle.italic, fontFamily: 'Dancing Script')),
+              letterSpacing: 2,
+              color: AppColors.navyBlue,
+              fontStyle: FontStyle.italic, 
+              fontSize: 24, 
+              fontWeight: FontWeight.bold, 
+              fontFamily: 'NothingYouCouldDo')),
         automaticallyImplyLeading: false,
       ),
       body: Column(
@@ -66,16 +71,18 @@ class _PlaceListPageState extends State<PlaceListPage> {
                   "YOUR QUESTS",
                   style: TextStyle(
                     color: Colors.red,
-                    fontSize: 11,
+                    fontSize: 12,
                     fontWeight: FontWeight.bold,
+                    fontFamily: 'Oswald'
                   ),
                 ),
                 Text(
                   "Upcoming",
                   style: TextStyle(
-                    fontSize: 30,
+                    fontSize: 32,
                     fontWeight: FontWeight.bold,
                     letterSpacing: -2,
+                    fontFamily: 'Oswald'
                   ),
                 ),
                 SizedBox(height: 25), // Buton ile yazı arasına mesafe

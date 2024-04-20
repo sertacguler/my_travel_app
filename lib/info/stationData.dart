@@ -4,6 +4,9 @@ class StationData {
   String imageUrl;
   String details;
   String type;
+  String country;
+  int status;
+  String date;
   double lat;
   double lng;
 
@@ -12,7 +15,10 @@ class StationData {
     required this.imageUrl,
      required this.details,
       required this.type,
-       required this.lat,
-        required this.lng});
+       required this.country,
+        required this.status,
+         required this.date,
+          required this.lat,
+            required this.lng});
 
 }

@@ -3,6 +3,7 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import '../components/custom_button.dart'; // Eğer path yanlış ise güncelleyin
 import '../components/theme.dart';
+import '../components/customAppBar.dart';
 import '../components/searchLocation.dart'; 
 import '../components/location_dialog.dart';
 import '../components/bottom_detail_widget.dart'; 
@@ -11,6 +12,8 @@ import '../info/locationData.dart';
 import './station_list_page.dart';
 import './home_page.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../components/DottedLinePainter.dart';
+import 'package:intl/intl.dart';  // intl paketi için import
 
 class MapPage extends StatefulWidget { 
   final String placeId;
@@ -24,10 +27,49 @@ class MapPage extends StatefulWidget {
 
 class _MapPageState extends State<MapPage> {
   List<Marker> markers = [];
-  List<StationData> markersInfo = [];
+  //List<StationData> markersInfo = [];
   late MapController mapController;
   double currentZoom = 15.0; // Örnek bir başlangıç zoom seviyesi
   
+  final List<StationData> markersInfo = [
+    StationData(
+      id: "1",
+      imageUrl: "https://source.unsplash.com/random/300x300?v=1",
+      title: "Durak 1",
+      details: "Açıklama 1",
+      type: "default",
+      country: "Italy",
+      status: 3,
+      date: DateTime.now().subtract(Duration(days: 100)).toString(),  // Örnek tarih
+      lat: 39.993936,
+      lng: 32.887406
+    ),
+    StationData(
+      id: "2",
+      imageUrl: "https://source.unsplash.com/random/300x300?v=2",
+      title: "Durak 2",
+      details: "Açıklama 2",
+      type: "default",
+      country: "Italy",
+      status: 1,
+      date: DateTime.now().subtract(Duration(days: 100)).toString(),  // Örnek tarih
+      lat: 30.042328,
+      lng: 31.2324968
+    ),
+     StationData(
+      id: "3",
+      imageUrl: "https://source.unsplash.com/random/300x300?v=3",
+      title: "Durak 3",
+      details: "Açıklama 3",
+      type: "Hotel",
+      country: "Italy",
+      status: 2,
+      date: DateTime.now().subtract(Duration(days: 100)).toString(),  // Örnek tarih
+      lat: 30.042328,
+      lng: 31.2324968
+    )
+  ];
+
   @override
   void initState() {
       super.initState();
@@ -53,7 +95,7 @@ class _MapPageState extends State<MapPage> {
     final marker = Marker(
       point: LatLng(stationData.lat, stationData.lng),
       child: GestureDetector(
-        onTap: () { _showBottomDialog(context, stationData); },
+        onTap: () { /*_showBottomDialog(context, stationData);*/ },
         child: Center(child: icon),
       ),
     );
@@ -67,6 +109,7 @@ class _MapPageState extends State<MapPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: CustomAppBar(title: 'TravelQuest'),
       body: Stack(
         children: [
           FlutterMap(
@@ -93,35 +136,39 @@ class _MapPageState extends State<MapPage> {
               backgroundColor: AppColors.navyBlue,
             ),
           ),
-          Positioned(
-              bottom: 20,
-              left: 20,
-              right: 20,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  Expanded(
-                    child: CustomButton(
-                      text: 'İptal',
-                      onPressed: () {
-                        // Ana sayfaya döner ve tüm önceki yığınları temizler
-                        Navigator.of(context).pushAndRemoveUntil(
-                          MaterialPageRoute(builder: (context) => StationListPage(placeId: widget.placeId)),
-                          (Route<dynamic> route) => false,
-                        );
-                      },
-                    ),
-                  ),
-                  SizedBox(width: 20), // Butonlar arasında boşluk bırakmak için
-                  Expanded(
-                    child: CustomButton(
-                      text: 'Durakları Kaydet',
-                      onPressed: () { _navigateToStationListPage(); /*_saveMarkers()*/ },
-                    ),
-                  ),
-                ],
+           Positioned.fill(
+  child: DraggableScrollableSheet(
+    builder: (BuildContext context, ScrollController scrollController) {
+      return Container(
+        color: Colors.grey[100],
+        child: Column(
+          children: [
+          Expanded(
+              child: ListView.builder(
+                controller: scrollController,
+                itemCount: markersInfo.length + 1,
+                itemBuilder: (BuildContext context, int index) {
+
+                   if (index == 0) { // Başlık elemanı
+                    return _buildHeader();
+                  } else {
+                    var data = markersInfo[index - 1]; // index - 1 çünkü başlık için bir kaydırma yapıyoruz.
+                    final formattedDate = DateFormat('dd/MM/yyyy').format(DateTime.parse(data.date));
+                    return _buildListItem(data, formattedDate);
+                  }
+                     
+                     },
               ),
             ),
+          ],
+        ),
+      );
+    },
+              initialChildSize: 0.5,
+              minChildSize: 0.20,
+              maxChildSize: 0.70,
+            ),
+          ),
         ],
       ),
     );
@@ -137,7 +184,10 @@ class _MapPageState extends State<MapPage> {
 
     if (result != null) {
       print("Yer adı: ${result.name}, Yorum: ${result.comment}, Marker Tipi: ${result.markerType}");
-      _addMarker(StationData(id: DateTime.now().toString(), title: result.name, details: result.comment, imageUrl: "", lng: position.longitude, lat: position.latitude, type: result.markerType), result.markerType);
+      _addMarker(StationData(id: DateTime.now().toString(), title: result.name,
+      country: "Italy",
+      status: 2,
+      date: DateTime.now().toString(), details: result.comment, imageUrl: "", lng: position.longitude, lat: position.latitude, type: result.markerType), result.markerType);
     }
   }
 
@@ -201,4 +251,128 @@ class _MapPageState extends State<MapPage> {
     );
   }*/
   
+}
+
+Widget _buildHeader() {
+    return Column(
+      children: [
+        SizedBox(height: 8),
+        Container(
+          height: 4,
+          width: 40,
+          decoration: BoxDecoration(
+            color: Colors.grey[500],
+            borderRadius: BorderRadius.circular(2),
+          ),
+        ),
+        SizedBox(height: 8),
+        Text(
+          "Stations Info",
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 24,
+          ),
+        ),
+        SizedBox(height: 8),
+      ],
+    );
+}
+
+Widget _buildListItem(StationData data, String formattedDate) {
+  Color dynamicColor = AppColors.white;
+ Icon listIcon;
+                      Icon arrowIcon;
+                      Text countryText = Text(data.country, style: TextStyle(color: Colors.grey[600], fontSize: 12, fontWeight: FontWeight.bold));
+                      Text dateText = Text(formattedDate, style: TextStyle(color: Colors.grey, fontSize: 12, fontWeight: FontWeight.bold));
+                      Text dataTitle = Text(data.title, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold));
+                      switch (data.status) {
+                        case 1:
+                          listIcon = Icon(Icons.location_on, color: AppColors.green, size: 30.0);
+                          dateText = Text("RIGTH NOW", style: TextStyle(color: AppColors.green, fontSize: 13, letterSpacing: -0.5, fontWeight: FontWeight.bold));
+                          countryText = Text(data.country, style: TextStyle(color: AppColors.green, fontSize: 14, letterSpacing: -0.5, fontWeight: FontWeight.bold));
+                          arrowIcon = Icon(Icons.arrow_forward, size: 20, color: AppColors.green);
+                          dataTitle =Text(data.title, style: TextStyle(color: AppColors.navyBlue, fontSize: 18, fontWeight: FontWeight.bold));
+                          dynamicColor = AppColors.white;
+                          break;
+                        case 2:
+                          listIcon = Icon(Icons.location_on, color: AppColors.navyBlue, size: 30.0);
+                          dateText = Text("WAITING", style: TextStyle(color:  Colors.grey[600], fontSize: 12, fontWeight: FontWeight.bold));
+                          countryText = Text(data.country, style: TextStyle(color:  Colors.grey[600], fontSize: 14, letterSpacing: -0.5, fontWeight: FontWeight.bold));
+                          arrowIcon = Icon(Icons.arrow_forward_ios, size: 16, color: AppColors.navyBlue);
+                          dataTitle =Text(data.title, style: TextStyle(color: AppColors.navyBlue, fontSize: 18, fontWeight: FontWeight.bold));
+                          dynamicColor = AppColors.lightLightGrey;
+                          break;
+                        case 3:
+                          listIcon = Icon(Icons.check_circle, color: AppColors.green, size: 30.0);
+                          dateText = dateText;
+                          countryText = Text(data.country, style: TextStyle(color: Colors.grey, fontSize: 14, letterSpacing: -0.5, fontWeight: FontWeight.bold));
+                          arrowIcon = Icon(Icons.arrow_forward_ios, size: 16, color: Colors.grey);
+                          dataTitle =Text(data.title, style: TextStyle(color: Colors.grey[600], fontSize: 18, fontWeight: FontWeight.bold));
+                          dynamicColor = AppColors.lightLightGrey;
+                          break;
+                        default:
+                          listIcon = Icon(Icons.location_on, color: Colors.grey, size: 30.0);  // Default case
+                          dateText = Text("", style: TextStyle(color: Colors.grey[600], fontSize: 12));
+                          countryText = Text(data.country, style: TextStyle(color: Colors.grey, fontSize: 14, letterSpacing: -0.5, fontWeight: FontWeight.bold));
+                          arrowIcon = Icon(Icons.arrow_forward_ios, size: 16, color: Colors.grey);
+                          dataTitle =Text(data.title, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold));
+                          dynamicColor = AppColors.lightLightGrey;
+                      }
+
+                     
+    return Container(
+                        margin: EdgeInsets.fromLTRB(7,1,7,0),
+                        padding: EdgeInsets.symmetric(vertical: 15, horizontal: 10),
+                        decoration: BoxDecoration(
+                          color: dynamicColor,
+                          borderRadius: BorderRadius.circular(10),
+                          boxShadow: [
+                            BoxShadow(
+                              color: AppColors.lightGrey.withOpacity(0.5),
+                              spreadRadius: 1,
+                              blurRadius: 5,
+                              offset: Offset(0, 3),
+                            ),
+                          ],
+                        ),
+                        child: Stack(
+                          alignment: Alignment.centerLeft,
+                          children: <Widget>[
+                            Container(
+                              width: 2,
+                              height: 50,
+                              margin: EdgeInsets.only(left: 12),
+                              child: CustomPaint(
+                                painter: DottedLinePainter(color: Colors.grey),
+                              ),
+                            ),
+                            Positioned(
+                              left: -3,
+                              child: listIcon,
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(left: 40),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                     countryText,
+                                      dateText,
+                                    ],
+                                  ),
+                                  SizedBox(height: 5),Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                  dataTitle,
+                                  arrowIcon
+                                  ],
+                                  ),],
+                              ),
+                            ),
+                          ],
+                        ),
+                      );
+
 }

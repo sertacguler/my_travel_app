@@ -19,7 +19,10 @@ Future<StationData?> searchLocation(String query) async {
         double longitude = data['features'][0]['center'][0];
         double latitude = data['features'][0]['center'][1];
         // Use these coordinates as needed in your app
-        return StationData(id: DateTime.now().toString(), title:name, imageUrl: "", lng:longitude, lat:latitude, type: 'default', details: "");
+        return StationData(id: DateTime.now().toString(), title:name,
+         country: "Italy",
+      status: 1,
+      date: DateTime.now().toString(),  imageUrl: "", lng:longitude, lat:latitude, type: 'default', details: "");
       } return null;  // Return null if no features found
     } else {
       throw Exception('Failed to load location data');

@@ -13,23 +13,23 @@ class StationItem extends StatelessWidget {
     required this.country,
     required this.date,
     required this.onRemove,
-  }) : super(key: key);
+  }) : super(key: key);  // Anahtar üst sınıfa geçirildi
 
   @override
   Widget build(BuildContext context) {
     final formattedDate = DateFormat('dd.MM.yyyy').format(DateTime.parse(date));  // Tarihi formatla
 
     return Container(
-      height: 150,  // Yüksekliği artırıldı
-      margin: EdgeInsets.symmetric(vertical: 0, horizontal: 3),  // Kenarlardan az boşluk
+      height: 150,
+      margin: EdgeInsets.symmetric(vertical: 10, horizontal: 3),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
-        border: Border.all(color: Colors.white, width: 1), // İnce beyaz çerçeve eklendi
+        border: Border.all(color: Colors.white, width: 1),
         image: DecorationImage(
           image: NetworkImage(imagePath),
           fit: BoxFit.cover,
           colorFilter: ColorFilter.mode(
-            Colors.black.withOpacity(0.5), BlendMode.darken),  // Hafif karartma
+            Colors.black.withOpacity(0.5), BlendMode.darken),
         ),
         boxShadow: [
           BoxShadow(
@@ -43,7 +43,7 @@ class StationItem extends StatelessWidget {
       child: Stack(
         children: [
           Padding(
-            padding: EdgeInsets.only(left: 10, top: 10, right: 10),  // İç padding
+            padding: EdgeInsets.all(10),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
@@ -68,30 +68,8 @@ class StationItem extends StatelessWidget {
               ],
             ),
           ),
-          Positioned(
-            top: 5,
-            right: 5,
-            child: CustomDeleteButton(onRemove: onRemove),
-          ),
+         
         ],
-      ),
-    );
-  }
-}
-
-class CustomDeleteButton extends StatelessWidget {
-  final VoidCallback onRemove;
-
-  const CustomDeleteButton({Key? key, required this.onRemove}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onRemove,
-      borderRadius: BorderRadius.circular(24),
-      child: Padding(
-        padding: EdgeInsets.all(5),
-        child: Icon(Icons.delete, color: Colors.red),
       ),
     );
   }

@@ -114,6 +114,7 @@ class _PlaceListPageState extends State<PlaceListPage> {
                       Navigator.pushNamed(context, '/stationList', arguments: placeId);
                     },
                     child: StationItem(
+                      key: ValueKey(place.id),  // Benzersiz key kullanımı
                       imagePath: place.imageUrl!,
                       country: place.country!,
                       date: place.date!,

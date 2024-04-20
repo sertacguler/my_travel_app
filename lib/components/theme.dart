@@ -3,9 +3,13 @@ import 'package:flutter/material.dart';
 class AppColors {
   static const navyBlue = Color(0xFF14213D);
   static const orange = Color(0xFFFCA311);
+  static const lightLightGrey = Color(0xFFFAFAFA);
+  static const lightGreyNew = Color(0xFFEEEEEE);
   static const lightGrey = Color(0xFFE5E5E5);
   static const black = Color(0xFF000000);
   static const white = Color(0xFFFFFFFF);
+  static const red = Color(0xffc90000);
+  static const green = Color(0xff03b126);
 }
 
 ThemeData buildAppTheme() {

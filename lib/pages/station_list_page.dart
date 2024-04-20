@@ -22,6 +22,9 @@ class _StationListPageState extends State<StationListPage> {
       title: "Durak 1",
       details: "Açıklama 1",
       type: "default",
+      country: "Italy",
+      status: 1,
+      date: DateTime.now().subtract(Duration(days: 100)).toString(),  // Örnek tarih
       lat: 39.993936,
       lng: 32.887406
     ),
@@ -31,6 +34,9 @@ class _StationListPageState extends State<StationListPage> {
       title: "Durak 2",
       details: "Açıklama 2",
       type: "default",
+      country: "Italy",
+      status: 2,
+      date: DateTime.now().subtract(Duration(days: 100)).toString(),  // Örnek tarih
       lat: 37.774000,
       lng: -74.006080
     )

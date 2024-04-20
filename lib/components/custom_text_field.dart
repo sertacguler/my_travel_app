@@ -11,7 +11,11 @@ class CustomTextField extends StatelessWidget {
     return TextField(
       decoration: InputDecoration(
         hintText: hintText,
-        hintStyle: TextStyle(color: AppColors.black),
+        hintStyle: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+            color: AppColors.navyBlue,
+            fontFamily: 'Oswald'),
       ),
     );
   }

@@ -30,7 +30,11 @@ class LoginPage extends StatelessWidget {
                 onTap: () => Navigator.pushNamed(context, '/register'),
                 child: Text(
                   "Don't have an account? Register here",
-                  style: TextStyle(color: AppColors.black),
+                  style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.bold,
+                      color: AppColors.navyBlue,
+                      fontFamily: 'Oswald'),
                 ),
               ),
             ],

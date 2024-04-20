@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:latlong2/latlong.dart';
 import '../info/locationData.dart';
+import '../components/theme.dart';
 
 class LocationDialog extends StatefulWidget {
   final LatLng position;
@@ -21,15 +22,17 @@ class _LocationDialogState extends State<LocationDialog> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text("Yeni Konum Ekle",
-          style: GoogleFonts.nunito(fontSize: 20, fontWeight: FontWeight.bold)),
+      title: Text(
+        "Yeni Konum Ekle",
+        style: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+            color: AppColors.navyBlue,
+            fontFamily: 'Oswald'),
+      ),
       content: SingleChildScrollView(
         child: ListBody(
           children: <Widget>[
-            Text(
-                "Enlem: ${widget.position.latitude}, Boylam: ${widget.position.longitude}",
-                style: GoogleFonts.nunito(fontSize: 16)),
-            SizedBox(height: 20),
             TextField(
               controller: nameController,
               decoration: InputDecoration(
@@ -67,7 +70,14 @@ class _LocationDialogState extends State<LocationDialog> {
               items: markerTypes.map<DropdownMenuItem<String>>((String value) {
                 return DropdownMenuItem<String>(
                   value: value,
-                  child: Text(value, style: GoogleFonts.nunito()),
+                  child: Text(
+                    value,
+                    style: TextStyle(
+                        fontSize: 17,
+                        fontWeight: FontWeight.bold,
+                        color: AppColors.navyBlue,
+                        fontFamily: 'Oswald'),
+                  ),
                 );
               }).toList(),
             ),
@@ -76,11 +86,25 @@ class _LocationDialogState extends State<LocationDialog> {
       ),
       actions: <Widget>[
         TextButton(
-          child: Text('İptal', style: GoogleFonts.nunito(color: Colors.red)),
+          child: Text(
+            'İptal',
+            style: TextStyle(
+                fontSize: 17,
+                fontWeight: FontWeight.bold,
+                color: Colors.red,
+                fontFamily: 'Oswald'),
+          ),
           onPressed: () => Navigator.of(context).pop(),
         ),
         TextButton(
-          child: Text('Kaydet', style: GoogleFonts.nunito(color: Colors.green)),
+          child: Text(
+            'Kaydet',
+            style: TextStyle(
+                fontSize: 17,
+                fontWeight: FontWeight.bold,
+                color: Colors.green,
+                fontFamily: 'Oswald'),
+          ),
           onPressed: () {
             if (nameController.text.isNotEmpty) {
               LocationData result = LocationData(

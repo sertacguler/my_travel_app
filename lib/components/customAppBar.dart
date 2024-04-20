@@ -12,8 +12,13 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       title: Text(title,
-            style: TextStyle(letterSpacing: 2, color: AppColors.navyBlue,
-                fontStyle: FontStyle.italic, fontSize: 24, fontWeight: FontWeight.bold, fontFamily: 'DancingScript')),
+          style: TextStyle(
+              letterSpacing: 2,
+              color: AppColors.navyBlue,
+              fontStyle: FontStyle.italic,
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+              fontFamily: 'DancingScript')),
       leading: IconButton(
         icon: Icon(Icons.arrow_back),
         onPressed: () => Navigator.of(context).pop(),

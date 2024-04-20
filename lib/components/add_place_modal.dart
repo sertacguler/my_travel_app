@@ -57,7 +57,14 @@ class _AddPlaceModalState extends State<AddPlaceModal> {
               backgroundColor: AppColors.orange,
               foregroundColor: AppColors.navyBlue,
             ),
-            child: Text('Kaydet'),
+            child: Text(
+              'Kaydet',
+              style: TextStyle(
+                  fontSize: 11,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.red,
+                  fontFamily: 'Oswald'),
+            ),
           ),
         ],
       ),

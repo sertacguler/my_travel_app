@@ -11,7 +11,14 @@ class CustomButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: onPressed,
-      child: Text(text),
+      child: Text(
+        text,
+        style: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+            color: AppColors.white,
+            fontFamily: 'Oswald'),
+      ),
       style: ElevatedButton.styleFrom(
         backgroundColor: AppColors.orange, // 'primary' yerine 'backgroundColor'
         foregroundColor:

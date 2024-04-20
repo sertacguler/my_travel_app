@@ -52,21 +52,19 @@ class StationItem extends StatelessWidget {
                 Text(
                   formattedDate,
                   style: TextStyle(
-                    fontSize: 11,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.red,
-                    fontFamily: 'Oswald'
-                  ),
+                      fontSize: 11,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.red,
+                      fontFamily: 'Oswald'),
                 ),
                 Text(
                   country,
                   style: TextStyle(
-                    fontSize: 30,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                    letterSpacing: -2,
-                    fontFamily: 'Oswald'
-                  ),
+                      fontSize: 30,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                      letterSpacing: -2,
+                      fontFamily: 'Oswald'),
                 ),
               ],
             ),

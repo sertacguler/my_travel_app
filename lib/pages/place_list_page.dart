@@ -51,12 +51,12 @@ class _PlaceListPageState extends State<PlaceListPage> {
       appBar: AppBar(
         title: Text("Travelquest",
             style: TextStyle(
-              letterSpacing: 2,
-              color: AppColors.navyBlue,
-              fontStyle: FontStyle.italic, 
-              fontSize: 24, 
-              fontWeight: FontWeight.bold, 
-              fontFamily: 'NothingYouCouldDo')),
+                letterSpacing: 2,
+                color: AppColors.navyBlue,
+                fontStyle: FontStyle.italic,
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+                fontFamily: 'NothingYouCouldDo')),
         automaticallyImplyLeading: false,
       ),
       body: Column(
@@ -70,20 +70,18 @@ class _PlaceListPageState extends State<PlaceListPage> {
                 Text(
                   "YOUR QUESTS",
                   style: TextStyle(
-                    color: Colors.red,
-                    fontSize: 12,
-                    fontWeight: FontWeight.bold,
-                    fontFamily: 'Oswald'
-                  ),
+                      color: Colors.red,
+                      fontSize: 12,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'Oswald'),
                 ),
                 Text(
                   "Upcoming",
                   style: TextStyle(
-                    fontSize: 32,
-                    fontWeight: FontWeight.bold,
-                    letterSpacing: -2,
-                    fontFamily: 'Oswald'
-                  ),
+                      fontSize: 32,
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: -2,
+                      fontFamily: 'Oswald'),
                 ),
                 SizedBox(height: 25), // Buton ile yazı arasına mesafe
                 Container(

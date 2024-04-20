@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'splashPage/splash_screen.dart';
 
-import 'loginPage/login_page.dart';    // Import for LoginPage
+import 'loginPage/login_page.dart'; // Import for LoginPage
 import 'loginPage/register_page.dart'; // Import for RegisterPage
 import 'loginPage/reminder_page.dart'; // Import for ReminderPage
 
@@ -39,7 +39,8 @@ class MyApp extends StatelessWidget {
             return MaterialPageRoute(builder: (_) => HomePage());
           case '/stationList':
             final String placeId = settings.arguments as String;
-            return MaterialPageRoute(builder: (_) => StationListPage(placeId: placeId));
+            return MaterialPageRoute(
+                builder: (_) => StationListPage(placeId: placeId));
           case '/placeList':
             return MaterialPageRoute(builder: (_) => PlaceListPage());
           case '/mapPage':

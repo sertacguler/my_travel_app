@@ -4,8 +4,8 @@ import 'package:latlong2/latlong.dart';
 import '../info/stationData.dart';
 
 Future<StationData?> searchLocation(String query) async {
-  final String apiUrl = 
-  'https://api.mapbox.com/geocoding/v5/mapbox.places/$query.json?access_token=pk.eyJ1Ijoic2VydGFjZyIsImEiOiJjbHV5ZnE2MjEwMnlkMmluazh0N2l6YnBnIn0.Qw2_nm9QqmOjqiTsIA_J3Q';
+  final String apiUrl =
+      'https://api.mapbox.com/geocoding/v5/mapbox.places/$query.json?access_token=pk.eyJ1Ijoic2VydGFjZyIsImEiOiJjbHV5ZnE2MjEwMnlkMmluazh0N2l6YnBnIn0.Qw2_nm9QqmOjqiTsIA_J3Q';
 
   try {
     final response = await http.get(Uri.parse(apiUrl));
@@ -19,16 +19,24 @@ Future<StationData?> searchLocation(String query) async {
         double longitude = data['features'][0]['center'][0];
         double latitude = data['features'][0]['center'][1];
         // Use these coordinates as needed in your app
-        return StationData(id: DateTime.now().toString(), title:name,
-         country: "Italy",
-      status: 1,
-      date: DateTime.now().toString(),  imageUrl: "", lng:longitude, lat:latitude, type: 'default', details: "");
-      } return null;  // Return null if no features found
+        return StationData(
+            id: DateTime.now().toString(),
+            title: name,
+            country: "Italy",
+            status: 1,
+            date: DateTime.now().toString(),
+            imageUrl: "",
+            lng: longitude,
+            lat: latitude,
+            type: 'default',
+            details: "");
+      }
+      return null; // Return null if no features found
     } else {
       throw Exception('Failed to load location data');
     }
   } catch (e) {
     print('Error making API call: $e');
-     return null;  // Return null in case of errors
+    return null; // Return null in case of errors
   }
 }

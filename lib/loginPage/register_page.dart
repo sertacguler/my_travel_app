@@ -23,7 +23,8 @@ class RegisterPage extends StatelessWidget {
               CustomButton(
                 text: "Register",
                 onPressed: () {
-                  Navigator.pushReplacementNamed(context, '/home');  // Adjust the route as needed
+                  Navigator.pushReplacementNamed(
+                      context, '/home'); // Adjust the route as needed
                 },
               ),
               SizedBox(height: 20),

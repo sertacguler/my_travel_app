@@ -21,11 +21,14 @@ class _LocationDialogState extends State<LocationDialog> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text("Yeni Konum Ekle", style: GoogleFonts.nunito(fontSize: 20, fontWeight: FontWeight.bold)),
+      title: Text("Yeni Konum Ekle",
+          style: GoogleFonts.nunito(fontSize: 20, fontWeight: FontWeight.bold)),
       content: SingleChildScrollView(
         child: ListBody(
           children: <Widget>[
-            Text("Enlem: ${widget.position.latitude}, Boylam: ${widget.position.longitude}", style: GoogleFonts.nunito(fontSize: 16)),
+            Text(
+                "Enlem: ${widget.position.latitude}, Boylam: ${widget.position.longitude}",
+                style: GoogleFonts.nunito(fontSize: 16)),
             SizedBox(height: 20),
             TextField(
               controller: nameController,
@@ -52,7 +55,8 @@ class _LocationDialogState extends State<LocationDialog> {
               decoration: InputDecoration(
                 labelText: "Marker Tipi Seçin",
                 border: OutlineInputBorder(),
-                contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 12),
+                contentPadding:
+                    EdgeInsets.symmetric(vertical: 0, horizontal: 12),
               ),
               value: selectedMarkerType,
               onChanged: (String? newValue) {
@@ -79,7 +83,7 @@ class _LocationDialogState extends State<LocationDialog> {
           child: Text('Kaydet', style: GoogleFonts.nunito(color: Colors.green)),
           onPressed: () {
             if (nameController.text.isNotEmpty) {
-               LocationData result = LocationData(
+              LocationData result = LocationData(
                 name: nameController.text,
                 comment: commentController.text,
                 markerType: selectedMarkerType,

@@ -14,48 +14,51 @@ class StationListPage extends StatefulWidget {
 }
 
 class _StationListPageState extends State<StationListPage> {
-
   final List<StationData> stations = [
     StationData(
-      id: "1",
-      imageUrl: "https://source.unsplash.com/random/300x300?v=1",
-      title: "Durak 1",
-      details: "Açıklama 1",
-      type: "default",
-      country: "Italy",
-      status: 1,
-      date: DateTime.now().subtract(Duration(days: 100)).toString(),  // Örnek tarih
-      lat: 39.993936,
-      lng: 32.887406
-    ),
+        id: "1",
+        imageUrl: "https://source.unsplash.com/random/300x300?v=1",
+        title: "Durak 1",
+        details: "Açıklama 1",
+        type: "default",
+        country: "Italy",
+        status: 1,
+        date: DateTime.now()
+            .subtract(Duration(days: 100))
+            .toString(), // Örnek tarih
+        lat: 39.993936,
+        lng: 32.887406),
     StationData(
-      id: "2",
-      imageUrl: "https://source.unsplash.com/random/300x300?v=2",
-      title: "Durak 2",
-      details: "Açıklama 2",
-      type: "default",
-      country: "Italy",
-      status: 2,
-      date: DateTime.now().subtract(Duration(days: 100)).toString(),  // Örnek tarih
-      lat: 37.774000,
-      lng: -74.006080
-    )
+        id: "2",
+        imageUrl: "https://source.unsplash.com/random/300x300?v=2",
+        title: "Durak 2",
+        details: "Açıklama 2",
+        type: "default",
+        country: "Italy",
+        status: 2,
+        date: DateTime.now()
+            .subtract(Duration(days: 100))
+            .toString(), // Örnek tarih
+        lat: 37.774000,
+        lng: -74.006080)
   ];
 
   @override
   Widget build(BuildContext context) {
-    List<StationData> filteredStations = stations.where((station) => station.id == widget.placeId).toList();
+    List<StationData> filteredStations =
+        stations.where((station) => station.id == widget.placeId).toList();
 
     return Scaffold(
-       appBar: AppBar(
+      appBar: AppBar(
         leading: IconButton(
           icon: Icon(Icons.arrow_back, color: AppColors.navyBlue),
           onPressed: () {
             // İstediğiniz yere yönlendirme yapın
-             Navigator.pushNamed(context, '/placeList');
+            Navigator.pushNamed(context, '/placeList');
           },
         ),
-        title: Text("Durak Listesi", style: TextStyle(color: AppColors.navyBlue)),
+        title:
+            Text("Durak Listesi", style: TextStyle(color: AppColors.navyBlue)),
         backgroundColor: AppColors.white,
       ),
       body: ListView.separated(
@@ -70,8 +73,10 @@ class _StationListPageState extends State<StationListPage> {
                 backgroundImage: NetworkImage(station.imageUrl),
                 radius: 30,
               ),
-              title: Text(station.title, style: TextStyle(color: AppColors.navyBlue)),
-              subtitle: Text(station.details, style: TextStyle(color: AppColors.navyBlue)),
+              title: Text(station.title,
+                  style: TextStyle(color: AppColors.navyBlue)),
+              subtitle: Text(station.details,
+                  style: TextStyle(color: AppColors.navyBlue)),
               trailing: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
@@ -92,11 +97,15 @@ class _StationListPageState extends State<StationListPage> {
                   ),
                   IconButton(
                     icon: Icon(Icons.qr_code, color: AppColors.navyBlue),
-                    onPressed: () { _showQrModal(context,station);},
+                    onPressed: () {
+                      _showQrModal(context, station);
+                    },
                   ),
                   IconButton(
                     icon: Icon(Icons.remove_circle, color: AppColors.orange),
-                    onPressed: () {removePlace(index);},
+                    onPressed: () {
+                      removePlace(index);
+                    },
                   ),
                 ],
               ),
@@ -108,15 +117,15 @@ class _StationListPageState extends State<StationListPage> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           // Yeni durak ekleme sayfasına yönlendirme yapabilirsiniz
-         Navigator.pushNamed(
-                        context,
-                        '/mapPage',
-                        arguments: {
-                          "placeId": widget.placeId,
-                          "latitude": null,
-                          "longitude": null
-                        },
-                      );
+          Navigator.pushNamed(
+            context,
+            '/mapPage',
+            arguments: {
+              "placeId": widget.placeId,
+              "latitude": null,
+              "longitude": null
+            },
+          );
         },
         backgroundColor: AppColors.navyBlue,
         child: Icon(Icons.add, color: AppColors.orange),
@@ -124,7 +133,7 @@ class _StationListPageState extends State<StationListPage> {
       ),
     );
   }
-  
+
   void removePlace(int index) {
     setState(() {
       stations.removeAt(index);
@@ -137,7 +146,7 @@ class _StationListPageState extends State<StationListPage> {
       builder: (BuildContext context) {
         return Container(
           padding: EdgeInsets.all(20),
-          height: 350,  // Adjust height as needed
+          height: 350, // Adjust height as needed
           child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -145,7 +154,8 @@ class _StationListPageState extends State<StationListPage> {
                 Text('Scan this QR Code'),
                 SizedBox(height: 20),
                 QrImageView(
-                  data: 'https://www.google.com/maps/@${station.lat},${station.lng},14z?entry=ttu',
+                  data:
+                      'https://www.google.com/maps/@${station.lat},${station.lng},14z?entry=ttu',
                   version: QrVersions.auto,
                   size: 200.0,
                 ),
@@ -156,5 +166,4 @@ class _StationListPageState extends State<StationListPage> {
       },
     );
   }
-
 }

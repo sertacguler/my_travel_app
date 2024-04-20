@@ -5,7 +5,8 @@ class DottedLinePainter extends CustomPainter {
   final double dashWidth;
   final double dashSpace;
 
-  DottedLinePainter({this.color = Colors.black, this.dashWidth = 4, this.dashSpace = 11});
+  DottedLinePainter(
+      {this.color = Colors.black, this.dashWidth = 4, this.dashSpace = 11});
 
   @override
   void paint(Canvas canvas, Size size) {

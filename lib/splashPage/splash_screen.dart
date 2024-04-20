@@ -17,7 +17,10 @@ class SplashScreen extends StatelessWidget {
             Text(
               'Travel.',
               style: TextStyle(
-                fontSize: MediaQuery.of(context).size.height * 0.5 / "Travel.".length * 2,
+                fontSize: MediaQuery.of(context).size.height *
+                    0.5 /
+                    "Travel.".length *
+                    2,
                 color: AppColors.black,
                 fontWeight: FontWeight.bold,
               ),
@@ -25,7 +28,10 @@ class SplashScreen extends StatelessWidget {
             Text(
               '.',
               style: TextStyle(
-                fontSize: MediaQuery.of(context).size.height * 0.5 / "Travel.".length * 2,
+                fontSize: MediaQuery.of(context).size.height *
+                    0.5 /
+                    "Travel.".length *
+                    2,
                 color: AppColors.orange,
                 fontWeight: FontWeight.bold,
               ),

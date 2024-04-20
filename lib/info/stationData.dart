@@ -10,15 +10,15 @@ class StationData {
   double lat;
   double lng;
 
-  StationData({required this.id,
-   required this.title,
-    required this.imageUrl,
-     required this.details,
+  StationData(
+      {required this.id,
+      required this.title,
+      required this.imageUrl,
+      required this.details,
       required this.type,
-       required this.country,
-        required this.status,
-         required this.date,
-          required this.lat,
-            required this.lng});
-
+      required this.country,
+      required this.status,
+      required this.date,
+      required this.lat,
+      required this.lng});
 }

@@ -3,5 +3,6 @@ class LocationData {
   final String comment;
   final String markerType;
 
-  LocationData({required this.name, required this.comment, required this.markerType});
+  LocationData(
+      {required this.name, required this.comment, required this.markerType});
 }

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';  // intl paketi için import
+import 'package:intl/intl.dart'; // intl paketi için import
 
 class StationItem extends StatelessWidget {
-  final String imagePath;  // Arka plan resmi
-  final String country;    // Ülke adı
-  final String date;       // Tarih
-  final VoidCallback onRemove;  // Çıkarma işlemi için callback
+  final String imagePath; // Arka plan resmi
+  final String country; // Ülke adı
+  final String date; // Tarih
+  final VoidCallback onRemove; // Çıkarma işlemi için callback
 
   const StationItem({
     Key? key,
@@ -13,11 +13,12 @@ class StationItem extends StatelessWidget {
     required this.country,
     required this.date,
     required this.onRemove,
-  }) : super(key: key);  // Anahtar üst sınıfa geçirildi
+  }) : super(key: key); // Anahtar üst sınıfa geçirildi
 
   @override
   Widget build(BuildContext context) {
-    final formattedDate = DateFormat('dd.MM.yyyy').format(DateTime.parse(date));  // Tarihi formatla
+    final formattedDate = DateFormat('dd.MM.yyyy')
+        .format(DateTime.parse(date)); // Tarihi formatla
 
     return Container(
       height: 150,
@@ -28,8 +29,8 @@ class StationItem extends StatelessWidget {
         image: DecorationImage(
           image: NetworkImage(imagePath),
           fit: BoxFit.cover,
-          colorFilter: ColorFilter.mode(
-            Colors.black.withOpacity(0.5), BlendMode.darken),
+          colorFilter:
+              ColorFilter.mode(Colors.black.withOpacity(0.5), BlendMode.darken),
         ),
         boxShadow: [
           BoxShadow(
@@ -68,7 +69,6 @@ class StationItem extends StatelessWidget {
               ],
             ),
           ),
-         
         ],
       ),
     );

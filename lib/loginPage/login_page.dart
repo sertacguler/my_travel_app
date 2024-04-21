@@ -25,20 +25,22 @@ class _LoginPageState extends State<LoginPage> {
             children: <Widget>[
               CustomTextField(
                 hintText: "Email",
-                controller: _emailController,  // Kontrolcüyü bağla
+                controller: _emailController, // Kontrolcüyü bağla
               ),
               SizedBox(height: 20),
               CustomTextField(
                 hintText: "Password",
-                controller: _passwordController,  // Kontrolcüyü bağla
+                controller: _passwordController, // Kontrolcüyü bağla
               ),
               SizedBox(height: 40),
               CustomButton(
                 text: "Login",
                 onPressed: () {
-                  String email = _emailController.text;  // Email değerini al
-                  String password = _passwordController.text;  // Şifre değerini al
-                  loginUser(context, email, password);  // Giriş fonksiyonunu çağır
+                  String email = _emailController.text; // Email değerini al
+                  String password =
+                      _passwordController.text; // Şifre değerini al
+                  loginUser(
+                      context, email, password); // Giriş fonksiyonunu çağır
                 },
               ),
               SizedBox(height: 20),
@@ -62,7 +64,7 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   void dispose() {
-    _emailController.dispose();  // Kontrolcüleri temizle
+    _emailController.dispose(); // Kontrolcüleri temizle
     _passwordController.dispose();
     super.dispose();
   }

@@ -3,6 +3,7 @@ import '../components/station_item.dart';
 import '../components/theme.dart';
 import '../components/add_place_modal.dart';
 import '../info/placeData.dart';
+import '../services/PlaceService.dart';
 
 class PlaceListPage extends StatefulWidget {
   @override
@@ -158,6 +159,10 @@ class _PlaceListPageState extends State<PlaceListPage> {
   }
 
   void _addNewPlace(String title, String details, String country, String date) {
+    PlaceService.addPlaceToServer(title, details, country, date)
+        .catchError((error) {
+      print('Error adding place to server: $error');
+    });
     setState(() {
       places.add(PlaceData(
           id: DateTime.now().toString(),

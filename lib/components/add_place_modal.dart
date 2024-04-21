@@ -50,7 +50,8 @@ class _AddPlaceModalState extends State<AddPlaceModal> {
           SizedBox(height: 10), // Burada 20 piksel yükseklikte boşluk ekleniyor
           ElevatedButton(
             onPressed: () {
-              widget.addPlaceCallback(title, details, country);
+              widget.addPlaceCallback(
+                  title, details, country, DateTime.now().toString());
               Navigator.pop(context);
             },
             style: ElevatedButton.styleFrom(
@@ -62,7 +63,7 @@ class _AddPlaceModalState extends State<AddPlaceModal> {
               style: TextStyle(
                   fontSize: 11,
                   fontWeight: FontWeight.bold,
-                  color: Colors.red,
+                  color: Colors.white,
                   fontFamily: 'Oswald'),
             ),
           ),

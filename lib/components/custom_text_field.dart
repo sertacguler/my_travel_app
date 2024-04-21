@@ -4,14 +4,14 @@ import 'theme.dart';
 class CustomTextField extends StatelessWidget {
   final String hintText;
   final TextEditingController controller;
-  final bool obscureText;  // Şifre için metni gizlemek
-  final TextInputType keyboardType;  // Klavye türünü ayarlamak için
+  final bool obscureText; // Şifre için metni gizlemek
+  final TextInputType keyboardType; // Klavye türünü ayarlamak için
 
   CustomTextField({
     required this.hintText,
     required this.controller,
     this.obscureText = false,
-    this.keyboardType = TextInputType.text,  // Varsayılan olarak metin tipi
+    this.keyboardType = TextInputType.text, // Varsayılan olarak metin tipi
   });
 
   @override
@@ -29,7 +29,7 @@ class CustomTextField extends StatelessWidget {
           fontFamily: 'Oswald',
         ),
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),  // Kenarlık yuvarlaklığı
+          borderRadius: BorderRadius.circular(8), // Kenarlık yuvarlaklığı
         ),
       ),
     );

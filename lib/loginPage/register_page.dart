@@ -7,7 +7,8 @@ class RegisterPage extends StatelessWidget {
   // TextEditingControllers for form fields
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  final TextEditingController confirmPasswordController = TextEditingController();
+  final TextEditingController confirmPasswordController =
+      TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -41,8 +42,10 @@ class RegisterPage extends StatelessWidget {
                 text: "Register",
                 onPressed: () {
                   // You would typically also include form validation before navigating
-                  if (passwordController.text == confirmPasswordController.text) {
-                    Navigator.pushReplacementNamed(context, '/home'); // Adjust the route as needed
+                  if (passwordController.text ==
+                      confirmPasswordController.text) {
+                    Navigator.pushReplacementNamed(
+                        context, '/home'); // Adjust the route as needed
                   } else {
                     // Show an error message if passwords don't match
                     showDialog(
@@ -51,12 +54,12 @@ class RegisterPage extends StatelessWidget {
                         title: Text("Error"),
                         content: Text("Passwords do not match."),
                         actions: <Widget>[
-                         TextButton(
-      onPressed: () {
-        Navigator.of(context).pop(); // Dismiss the dialog
-      },
-      child: Text("OK"),
-    ),
+                          TextButton(
+                            onPressed: () {
+                              Navigator.of(context).pop(); // Dismiss the dialog
+                            },
+                            child: Text("OK"),
+                          ),
                         ],
                       ),
                     );

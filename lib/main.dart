@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'splashPage/splash_screen.dart';
+import 'package:provider/provider.dart';
 
 import 'loginPage/login_page.dart'; // Import for LoginPage
 import 'loginPage/register_page.dart'; // Import for RegisterPage
@@ -12,9 +13,15 @@ import 'pages/home_page.dart';
 import 'pages/station_list_page.dart';
 import 'pages/place_list_page.dart';
 import 'pages/map_page.dart';
+import 'services/user_model.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => UserModel(),
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {

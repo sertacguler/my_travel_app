@@ -3,6 +3,8 @@ import '../components/custom_text_field.dart';
 import '../components/custom_button.dart';
 import '../components/theme.dart';
 import '../services/loginUser.dart';
+import '../services/waterModeLogin.dart';
+import 'package:provider/provider.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -41,6 +43,11 @@ class _LoginPageState extends State<LoginPage> {
                       _passwordController.text; // Şifre değerini al
                   loginUser(
                       context, email, password); // Giriş fonksiyonunu çağır
+                },
+              ),SizedBox(height: 20), CustomButton(
+                text: "WaterMode",
+                onPressed: () {
+                  waterModeLogin(context); // Giriş fonksiyonunu çağır
                 },
               ),
               SizedBox(height: 20),

@@ -10,6 +10,8 @@ class AppColors {
   static const white = Color(0xFFFFFFFF);
   static const red = Color(0xffc90000);
   static const green = Color(0xff03b126);
+  static const avatarPink = Color(0xffff96ef);
+  static const avatarBlue = Color(0xff58d9ff);
 }
 
 ThemeData buildAppTheme() {

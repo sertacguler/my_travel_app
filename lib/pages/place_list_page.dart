@@ -50,7 +50,7 @@ class _PlaceListPageState extends State<PlaceListPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Travelquest",
+        title: Text("Explore The World",
             style: TextStyle(
                 letterSpacing: 2,
                 color: AppColors.navyBlue,

@@ -57,7 +57,7 @@ class _StationListPageState extends State<StationListPage> {
             Navigator.pushNamed(context, '/placeList');
           },
         ),
-        title: Text("Travelquest",
+        title: Text("Explore The World",
             style: TextStyle(
                 letterSpacing: 2,
                 color: AppColors.navyBlue,
